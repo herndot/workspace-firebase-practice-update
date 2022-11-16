@@ -20,9 +20,8 @@ $(".sampleSurvey input[type='submit']").click(function (e) {
   // get the value of the form using serializeArray method
 
   var data = {};
-    $('form')
-      .serializeArray()
-        .forEach((entry) => (data[entry.name] = entry.value));
+    $('form').serializeArray()
+      .forEach((entry) => (data[entry.name] = entry.value));
 
   console.log(data);
 
