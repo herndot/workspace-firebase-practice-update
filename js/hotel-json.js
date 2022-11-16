@@ -26,7 +26,7 @@ $("input[type='button']").click(function (e) {
 
   firebase.firestore().collection('hotel').add(data);
 
-  //console.log(data);
+  console.log(data);
 
   /* clear the entry */
   $('form')[0].reset();
