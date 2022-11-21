@@ -5,7 +5,7 @@ var firebaseConfig = {
   storageBucket: 'grocerylist-e0d24.appspot.com',
   messagingSenderId: '455097292055',
   appId: '1:455097292055:web:ee3426b9043152594c1352',
-  measurementId: 'G-XX0EPYZTCS',
+  measurementId: 'G-XX0EPYZTCS'
 };
 
 /*apiKey: 'AIzaSyAzcwgZuLA7dO9g4sQhXQVTUgCo0M8m2qM',
@@ -37,6 +37,7 @@ $('#Login').submit(function (e) {
       // ...
       console.log('login in');
       let user = firebase.auth().currentUser;
+      window.location.href = "Surveyresult.html";
 
       //user.updateProfile({ displayName: "Not sure" });
       if (user != null) {
@@ -48,8 +49,46 @@ $('#Login').submit(function (e) {
       }
     })
     .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorMessage);
+      console.log(error.code)
+      console.log(error.message);
     });//*/
 });
+
+
+$('#googleSignIn').click(function (e) {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then((result) => {
+    const user = result.user;
+    console.log("Google User " + user.email + " logged in.");
+  })
+  .catch(error => {
+    console.log(error.code);
+    console.log(error.message);
+  });
+})//*/
+
+
+/*$('#googleSignIn').click(function (e) {
+  //import {getAuth, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
+
+  const auth = getAuth();
+  getRedirectResult(auth)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access Google APIs.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+
+      // The signed-in user info.
+      const user = result.user;
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+});//*/

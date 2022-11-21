@@ -32,9 +32,7 @@ $("#signup-form").submit(function(e) {
       window.location.href = "Login.html";
     })
     .catch(error => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
       console.log(error.code);
-      console.log(errorMessage);
+      console.log(error.message);
     });//*/
 });
